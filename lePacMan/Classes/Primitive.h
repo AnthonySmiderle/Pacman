@@ -16,6 +16,7 @@ namespace DevitoCult {
 
 		//bool isColliding(SquarePrimitive s);
 		cocos2d::DrawNode* getDrawNode() const;
+		void setColour(cocos2d::Color4F c);
 		cocos2d::Vec2 getP1() const { return p1; }
 		void setP1x(float X) { p1.x = X; }
 		void setP2x(float X) { p2.x = X; }

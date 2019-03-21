@@ -20,7 +20,7 @@ namespace DevitoCult {
 		p1 = startingPosition;
 		p2 = endPosition;
 
-		Node->drawSolidRect(p1, p2, cocos2d::Color4F(1.0f, 1.0f, 0.0f, 1.0f));
+		Node->drawRect(p1, p2, cocos2d::Color4F(1.0f, 1.0f, 0.0f, 1.0f));
 
 		velocity = cocos2d::Vec2(0, 0);
 	}
@@ -33,9 +33,14 @@ namespace DevitoCult {
 	{
 		//Node->release();//destroy draw node
 	}
-	cocos2d::DrawNode *  SquarePrimitive::getDrawNode() const
+	cocos2d::DrawNode *SquarePrimitive::getDrawNode() const
 	{
 		return Node;
+	}
+
+	void SquarePrimitive::setColour(cocos2d::Color4F c)
+	{
+		Node->drawRect(p1, p2, c);
 	}
 
 	cocos2d::Vec2  SquarePrimitive::getCentre()
@@ -53,7 +58,6 @@ namespace DevitoCult {
 	void SquarePrimitive::setForce(cocos2d::Vec2 v)
 	{
 		velocity = v;
-		
 	}
 
 	void  SquarePrimitive::update()
