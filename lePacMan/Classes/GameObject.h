@@ -12,6 +12,7 @@ namespace DevitoCult {
 		virtual ~GameObject() { delete sprite; delete hitBox; }
 		cocos2d::Sprite* getSprite()const;
 		DevitoCult::CirclePrimitive* getBox()const;
+		DevitoCult::SquarePrimitive* getAltBox() const;
 		void setCircle(CirclePrimitive c) { *hitBox = c; }
 		void updateGameObject();
 		int getHP() const;
@@ -23,5 +24,6 @@ namespace DevitoCult {
 		int objectHp;
 		cocos2d::Sprite *sprite;
 		DevitoCult::CirclePrimitive* hitBox;
+		DevitoCult::SquarePrimitive* altHitBox;
 	};
 }

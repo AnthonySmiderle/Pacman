@@ -27,7 +27,7 @@
 
 #include "cocos2d.h"
 #include "Pacman.h"
-
+#include "Level.h"
 class HelloWorld : public cocos2d::Scene
 {
 public:
@@ -45,6 +45,7 @@ public:
 
 
 	//manager that stores controllers
+	DevitoCult::Level levelOne;
 	DevitoCult::XinputManager manager;
 	DevitoCult::XinputController* p1Controller;
 	//controller sticks

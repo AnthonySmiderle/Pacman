@@ -1,17 +1,8 @@
 //Anthony Smiderle
 //100695532
+//this code is from Sedna Games' GDW project, and it was written by Anthony Smiderle
 #pragma once
-
 #include "cocos2d.h"
-
-//forward declaring a vec2 class for use in constructor
-//namespace cocos2d {
-//	class Vec2;
-//	class DrawNode;
-//}
-
-
-		
 
 namespace DevitoCult {
 	class SquarePrimitive {
@@ -33,6 +24,7 @@ namespace DevitoCult {
 		cocos2d::Vec2 getP2() const { return p2; }
 		cocos2d::Vec2 getCentre();
 		void addForce(cocos2d::Vec2 v);
+		void setForce(cocos2d::Vec2 v);
 		void update();
 	private:
 		cocos2d::DrawNode *Node;

@@ -1,5 +1,6 @@
 //Anthony Smiderle
 //100695532
+//this code is from Sedna Games' GDW project, and it was written by Anthony Smiderle
 #include "Primitive.h"
 #include "2d/CCDrawNode.h"
 
@@ -12,23 +13,23 @@ namespace DevitoCult {
 		return temp;
 	}
 
-	 SquarePrimitive::SquarePrimitive(const cocos2d::Vec2 & startingPosition, const cocos2d::Vec2 & endPosition)
+	SquarePrimitive::SquarePrimitive(const cocos2d::Vec2 & startingPosition, const cocos2d::Vec2 & endPosition)
 		: Node(cocos2d::DrawNode::create())//initialize draw node
 	{
 		//draw a rectangle given dimensions
 		p1 = startingPosition;
 		p2 = endPosition;
-		
+
 		Node->drawSolidRect(p1, p2, cocos2d::Color4F(1.0f, 1.0f, 0.0f, 1.0f));
 
 		velocity = cocos2d::Vec2(0, 0);
 	}
 
-	 SquarePrimitive::SquarePrimitive()
+	SquarePrimitive::SquarePrimitive()
 	{
 	}
 
-	 SquarePrimitive::~SquarePrimitive()
+	SquarePrimitive::~SquarePrimitive()
 	{
 		//Node->release();//destroy draw node
 	}
@@ -49,31 +50,35 @@ namespace DevitoCult {
 		update();
 	}
 
+	void SquarePrimitive::setForce(cocos2d::Vec2 v)
+	{
+		velocity = v;
+		
+	}
+
 	void  SquarePrimitive::update()
 	{
 
 		//p1 += velocity;
 		//p2 += velocity;
 
-
-		p1 += velocity;
-		p2 += velocity;
-		this->Node->clear();
-		Node->drawSolidRect(p1, p2, cocos2d::Color4F(1.0f, 1.0f, 0.0f, 1.0f));
+		this->getDrawNode()->setPosition(this->getDrawNode()->getPosition() + velocity);
+		
+		//Node->drawSolidRect(p1, p2, cocos2d::Color4F(1.0f, 1.0f, 0.0f, 1.0f));
 	}
 
 
 
-	
+
 
 
 
 	//Circle
 	DevitoCult::CirclePrimitive::CirclePrimitive(const cocos2d::Vec2 &LOCATION, float RADIUS, float ANGLE, unsigned int SEGMENTS)
-		: Node(cocos2d::DrawNode::create()),location(LOCATION), radius(RADIUS), angle(ANGLE), segments(SEGMENTS)
+		: Node(cocos2d::DrawNode::create()), location(LOCATION), radius(RADIUS), angle(ANGLE), segments(SEGMENTS)
 	{
 		//draw a circle given dimensions
-		Node->drawCircle(LOCATION, RADIUS, ANGLE, SEGMENTS, false, lerpdeColour(cocos2d::Color4F(1.0f,0.0f,0.0f,1.0f),cocos2d::Color4F(0.0f,0.0f,1.0f,1.0f),1.0f));
+		Node->drawCircle(LOCATION, RADIUS, ANGLE, SEGMENTS, false, lerpdeColour(cocos2d::Color4F(1.0f, 0.0f, 0.0f, 1.0f), cocos2d::Color4F(0.0f, 0.0f, 1.0f, 1.0f), 1.0f));
 	}
 
 	DevitoCult::CirclePrimitive::CirclePrimitive()
@@ -82,8 +87,8 @@ namespace DevitoCult {
 
 	DevitoCult::CirclePrimitive::~CirclePrimitive()
 	{
-		
-//		Node->release();
+
+		//		Node->release();
 	}
 
 	cocos2d::DrawNode * DevitoCult::CirclePrimitive::getDrawNode() const
@@ -93,16 +98,16 @@ namespace DevitoCult {
 
 	void CirclePrimitive::update()
 	{
-		
+
 
 		if (dt > 0.9f || dt < 0.01f)
 		{
 			dt = dt > .9f ? .9f : 0.01f;
 			dt2 *= -1;
 		}
-		
+
 		dt += dt2;
-		
+
 		location += velocity;
 		Node->clear();
 		Node->drawCircle(location, radius, angle, segments, false, lerpdeColour(cocos2d::Color4F(1.0f, 0.0f, 0.0f, 1.0f), cocos2d::Color4F(0.0f, 0.0f, 1.0f, 1.0f), dt));
@@ -120,7 +125,7 @@ namespace DevitoCult {
 		if (velocity.x >= maxVelocity)
 			velocity.x = maxVelocity;
 		else if (velocity.x <= minVelocity)
-			velocity.x = minVelocity;		
+			velocity.x = minVelocity;
 		if (velocity.y >= maxVelocity)
 			velocity.y = maxVelocity;
 		else if (velocity.y <= minVelocity)
@@ -146,13 +151,13 @@ namespace DevitoCult {
 	{
 		return location;
 	}
-	
+
 	bool CirclePrimitive::checkCollision(CirclePrimitive other)
 	{
-		float distance = sqrt((this->location.x - other.location.x)*(this->location.x - other.location.x) + 
+		float distance = sqrt((this->location.x - other.location.x)*(this->location.x - other.location.x) +
 			(this->location.y - other.location.y)*(this->location.y - other.location.y));
 
-		
+
 		if (distance <= (this->radius + other.radius))
 			return true;
 
@@ -177,9 +182,9 @@ namespace DevitoCult {
 		float distance = sqrt((this->location.x - other.location.x)*(this->location.x - other.location.x) +
 			(this->location.y - other.location.y)*(this->location.y - other.location.y));
 
-		if (distance <= ((this->radius-(this->radius/10)) + (other.radius-(other.radius/10))))
+		if (distance <= ((this->radius - (this->radius / 10)) + (other.radius - (other.radius / 10))))
 			return true;
 		return false;
 	}
-	
+
 }

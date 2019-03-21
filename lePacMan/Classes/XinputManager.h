@@ -1,3 +1,4 @@
+//this code is from Sedna Games' GDW project, and it was written by Anthony Smiderle
 #pragma once
 #include <Windows.h>
 #include <Xinput.h>

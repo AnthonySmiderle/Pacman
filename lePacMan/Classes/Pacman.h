@@ -1,3 +1,5 @@
+//the following code takes inspiration from Sedna Games' GDW project
+
 #pragma once
 #include "GameObject.h"
 #include "XinputManager.h"
@@ -7,10 +9,8 @@ namespace DevitoCult {
 	public:
 		Pacman(cocos2d::Scene* s, XinputManager MANAGER, float x = 250, float y = 250);
 		~Pacman();
-		//a player needs to move
 		void update();
 		void die() override;
-
 
 	private:
 		XinputController* pController;
