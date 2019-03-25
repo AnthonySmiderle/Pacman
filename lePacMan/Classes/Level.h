@@ -10,11 +10,12 @@ namespace DevitoCult {
 		//0 = blank space
 		//1 = regular square
 		void drawMap(cocos2d::Scene* s);
-
+		std::vector<SquarePrimitive> getBounds() const;
+		SquarePrimitive operator[](const unsigned index);
 
 	private:
-		const int x = 37, y = 37;
 		std::vector<SquarePrimitive> levelBounds;
+
 		int levelData[21][27] = {//20,
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},

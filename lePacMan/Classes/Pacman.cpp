@@ -6,7 +6,7 @@ DevitoCult::Pacman::Pacman(cocos2d::Scene* s, XinputManager MANAGER,float x, flo
 {
 	//makes a new sprite and a new hitbox
 	sprite = cocos2d::Sprite::create("HelloWorld.png");
-	altHitBox = new SquarePrimitive(cocos2d::Vec2(0,0),cocos2d::Vec2(5,5));
+	altHitBox = new SquarePrimitive(cocos2d::Vec2(0,0),cocos2d::Vec2(5,5),cocos2d::Color4F(1.0f,1.0f,0,1.0f));
 	sprite->setVisible(false);
 
 	s->addChild(altHitBox->getDrawNode(),100);

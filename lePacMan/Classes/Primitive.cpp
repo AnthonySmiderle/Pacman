@@ -6,6 +6,21 @@
 
 namespace DevitoCult {
 
+	bool dVec2::operator>=(const dVec2 & dVec)
+	{
+		if (this->x >= dVec.x && this->y >= dVec.y)
+			return true;
+		return false;
+	}
+
+	bool dVec2::operator<=(const dVec2 & dVec)
+	{
+		if (this->x <= dVec.x && this->y <= dVec.y)
+			return true;
+		return false;
+	}
+
+
 	cocos2d::Color4F lerpdeColour(cocos2d::Color4F c1, cocos2d::Color4F c2, float dt) {
 
 		cocos2d::Color4F temp;
@@ -13,14 +28,15 @@ namespace DevitoCult {
 		return temp;
 	}
 
-	SquarePrimitive::SquarePrimitive(const cocos2d::Vec2 & startingPosition, const cocos2d::Vec2 & endPosition)
+	SquarePrimitive::SquarePrimitive(const cocos2d::Vec2 & startingPosition, const cocos2d::Vec2 & endPosition, const cocos2d::Color4F& COLOUR)
 		: Node(cocos2d::DrawNode::create())//initialize draw node
 	{
 		//draw a rectangle given dimensions
 		p1 = startingPosition;
 		p2 = endPosition;
 
-		Node->drawRect(p1, p2, cocos2d::Color4F(1.0f, 1.0f, 0.0f, 1.0f));
+		Node->drawRect(p1, p2, COLOUR);
+		colour = COLOUR;
 
 		velocity = cocos2d::Vec2(0, 0);
 	}
@@ -33,6 +49,29 @@ namespace DevitoCult {
 	{
 		//Node->release();//destroy draw node
 	}
+
+
+	bool SquarePrimitive::colliding(SquarePrimitive s)
+	{
+		//if (this->p2.x >= s.p1.x || s.p2.x >= this->p1.x ||
+		//	this->p1.x <= s.p2.x || s.p1.x <= this->p2.x ||
+		//	this->p2.y >= s.p1.y || s.p2.y >= this->p1.y ||
+		//	this->p1.x <= s.p2.y || s.p1.y <= this->p2.y)
+		//	return true;
+
+
+		///
+		if (p1.x <= s.p2.x && p2.x >= s.p1.x&&
+			p1.y <= s.p2.y && p2.y >= s.p1.y)
+			return true;
+		//if (s.p1.x >= this->getCentre().x&&
+		//	s.p2.x <= this->getCentre().x&&
+		//	s.p1.y >= this->getCentre().y&&
+		//	s.p2.y <= this->getCentre().y)
+		//	return true;
+
+		return false;
+	}
 	cocos2d::DrawNode *SquarePrimitive::getDrawNode() const
 	{
 		return Node;
@@ -43,9 +82,16 @@ namespace DevitoCult {
 		Node->drawRect(p1, p2, c);
 	}
 
+	void SquarePrimitive::setPosition(const cocos2d::Vec2 & P1, const cocos2d::Vec2 & P2)
+	{
+		p1 = P1;
+		p2 = P2;
+	}
+
 	cocos2d::Vec2  SquarePrimitive::getCentre()
 	{
-		return cocos2d::Vec2(p1.x + p2.x / 2, p1.y + p2.y / 2);
+		auto yes = (p2 + p1) / 2.0f;
+		return yes;
 	}
 
 	void  SquarePrimitive::addForce(cocos2d::Vec2 v)
@@ -66,9 +112,11 @@ namespace DevitoCult {
 		//p1 += velocity;
 		//p2 += velocity;
 
-		this->getDrawNode()->setPosition(this->getDrawNode()->getPosition() + velocity);
-		
-		//Node->drawSolidRect(p1, p2, cocos2d::Color4F(1.0f, 1.0f, 0.0f, 1.0f));
+		//this->getDrawNode()->setPosition(this->getDrawNode()->getPosition() + velocity);
+		p1 += velocity;
+		p2 += velocity;
+		Node->clear();
+		Node->drawRect(p1, p2, colour);
 	}
 
 
@@ -190,5 +238,7 @@ namespace DevitoCult {
 			return true;
 		return false;
 	}
+
+
 
 }

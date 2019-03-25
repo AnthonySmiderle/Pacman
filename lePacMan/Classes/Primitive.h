@@ -5,19 +5,32 @@
 #include "cocos2d.h"
 
 namespace DevitoCult {
+	//>=
+	class dVec2 : public cocos2d::Vec2{
+	public:
+		dVec2(const cocos2d::Vec2& v) { x = v.x; y = v.y; }
+
+		bool operator>=(const dVec2& dVec);
+		bool operator<=(const dVec2& dVec);
+		
+	};
+
 	class SquarePrimitive {
 
 	public:
 		//using reference operator to denote a pointer, otherwise it won't work. Vec2 &name literally means an integer in the computer's memory
-		SquarePrimitive(const cocos2d::Vec2 &startingPosition, const cocos2d::Vec2 &endPosition);
+		SquarePrimitive(const cocos2d::Vec2 &startingPosition, const cocos2d::Vec2 &endPosition, const cocos2d::Color4F& colour);
 		SquarePrimitive();
 		~SquarePrimitive();
 
 
 		//bool isColliding(SquarePrimitive s);
+
+		bool colliding(SquarePrimitive s);
 		cocos2d::DrawNode* getDrawNode() const;
 		void setColour(cocos2d::Color4F c);
 		cocos2d::Vec2 getP1() const { return p1; }
+		void setPosition(const cocos2d::Vec2& P1, const cocos2d::Vec2& P2);
 		void setP1x(float X) { p1.x = X; }
 		void setP2x(float X) { p2.x = X; }
 		void setP1y(float Y) { p1.y = Y; }
@@ -28,6 +41,7 @@ namespace DevitoCult {
 		void setForce(cocos2d::Vec2 v);
 		void update();
 	private:
+		cocos2d::Color4F colour;
 		cocos2d::DrawNode *Node;
 		cocos2d::Vec2 velocity;
 		cocos2d::Vec2 location;
@@ -40,7 +54,7 @@ namespace DevitoCult {
 	//the actually useful one
 	class CirclePrimitive {
 	public:
-		CirclePrimitive(const cocos2d::Vec2 &LOCATION,float RADIUS, float ANGLE,unsigned int SEGMENTS);
+		CirclePrimitive(const cocos2d::Vec2 &LOCATION, float RADIUS, float ANGLE, unsigned int SEGMENTS);
 		CirclePrimitive();
 		~CirclePrimitive();
 
