@@ -53,23 +53,18 @@ namespace DevitoCult {
 
 	bool SquarePrimitive::colliding(SquarePrimitive s)
 	{
-		//if (this->p2.x >= s.p1.x || s.p2.x >= this->p1.x ||
-		//	this->p1.x <= s.p2.x || s.p1.x <= this->p2.x ||
-		//	this->p2.y >= s.p1.y || s.p2.y >= this->p1.y ||
-		//	this->p1.x <= s.p2.y || s.p1.y <= this->p2.y)
+
+		//if (p1.x <= s.p2.x && p2.x >= s.p1.x&&
+		//	p1.y <= s.p2.y && p2.y >= s.p1.y)
 		//	return true;
+		//
+		//if (p2.y >= s.p1.y && p2.x >= s.p1.x/*right side of this touches left side of s from the bottom*/)
 
 
-		///
-		if (p1.x <= s.p2.x && p2.x >= s.p1.x&&
-			p1.y <= s.p2.y && p2.y >= s.p1.y)
+
+		if (this->getCentre().x >= s.p1.x && this->getCentre().x <= s.p2.x&&
+			this->getCentre().y >= s.p1.y && this->getCentre().y <= s.p2.y)
 			return true;
-		//if (s.p1.x >= this->getCentre().x&&
-		//	s.p2.x <= this->getCentre().x&&
-		//	s.p1.y >= this->getCentre().y&&
-		//	s.p2.y <= this->getCentre().y)
-		//	return true;
-
 		return false;
 	}
 	cocos2d::DrawNode *SquarePrimitive::getDrawNode() const
@@ -90,8 +85,7 @@ namespace DevitoCult {
 
 	cocos2d::Vec2  SquarePrimitive::getCentre()
 	{
-		auto yes = (p2 + p1) / 2.0f;
-		return yes;
+		return p1 + (p2 - p1) / 2.0f;
 	}
 
 	void  SquarePrimitive::addForce(cocos2d::Vec2 v)

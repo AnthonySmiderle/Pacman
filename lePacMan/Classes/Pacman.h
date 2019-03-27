@@ -7,7 +7,7 @@ namespace DevitoCult {
 
 	class Pacman :public GameObject {
 	public:
-		Pacman(cocos2d::Scene* s, XinputManager MANAGER, float x = 250, float y = 250);
+		Pacman(cocos2d::Scene* s, XinputManager MANAGER, float x = 250, float y = 250, float x2 = 255, float y2 = 255);
 		~Pacman();
 		void update();
 		void die() override;
