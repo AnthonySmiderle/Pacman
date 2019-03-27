@@ -77,17 +77,11 @@ void HelloWorld::update(float dt)
 	manager.update();
 	p1Controller->updateSticks(p1Sticks);
 	pacman->update();
-	//for (auto x : levelOne.getBounds())
-	//	x.update();
+	
 	///std::cout << pacman->getAltBox()->getP1().x << " " << pacman->getAltBox()->getP1().y << " " << pacman->getAltBox()->getP2().x << " " << pacman->getAltBox()->getP2().y << "\n";
 	for (unsigned i = 0; i < levelOne.getBounds().size(); i++) {
 		if (levelOne[i].colliding(*pacman->getAltBox())) {
-			//std::cout << "This"<<levelOne[i].getP1().x << " " << levelOne[i].getP1().y << " \n" <<
-			//	levelOne[i].getP2().x << " " << levelOne[i].getP2().y << "\n";
-			//
-			//std::cout << "\nS" << pacman->getAltBox()->getP1().x << " " << pacman->getAltBox()->getP1().y << " \n" <<
-			//	pacman->getAltBox()->getP2().x << " " << pacman->getAltBox()->getP2().y << "\n";
-			std::cout << "S";
+			
 		}
 	}
 
