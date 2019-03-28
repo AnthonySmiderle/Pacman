@@ -25,6 +25,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include <iostream>
+#include <string>
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -59,6 +60,11 @@ bool HelloWorld::init()
 	p1Controller->updateSticks(p1Sticks);
 	initSprites();
 
+	auto LabelScore = Label::createWithSystemFont("", "Arial", 12);
+	this->addChild(LabelScore);
+	sLabel = LabelScore;
+	sLabel->setPosition(100,310);
+
 	this->scheduleUpdate();
 
 
@@ -78,9 +84,20 @@ void HelloWorld::update(float dt)
 	p1Controller->updateSticks(p1Sticks);
 	pacman->update();
 	
+	//updates and sets the label that displays the score
+	std::string sString = "Score: ";
+	sString.append(std::to_string(score));
+	sLabel->setString(sString);
+	
 	///std::cout << pacman->getAltBox()->getP1().x << " " << pacman->getAltBox()->getP1().y << " " << pacman->getAltBox()->getP2().x << " " << pacman->getAltBox()->getP2().y << "\n";
 	levelOne.checkWall(pacman);
 	levelOne.checkEat(pacman);
+	
+	if (numPacDots == 70 || numPacDots == 170)
+	{
+		//create fruit under the ghost room
+	}
+
 
 }
 
