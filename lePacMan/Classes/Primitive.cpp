@@ -53,17 +53,8 @@ namespace DevitoCult {
 
 	bool SquarePrimitive::colliding(SquarePrimitive s)
 	{
-
-		//if (p1.x <= s.p2.x && p2.x >= s.p1.x&&
-		//	p1.y <= s.p2.y && p2.y >= s.p1.y)
-		//	return true;
-		//
-		//if (p2.y >= s.p1.y && p2.x >= s.p1.x/*right side of this touches left side of s from the bottom*/)
-
-
-
-		if (this->getCentre().x >= s.p1.x && this->getCentre().x <= s.p2.x&&
-			this->getCentre().y >= s.p1.y && this->getCentre().y <= s.p2.y)
+		if (this->p2.x >= s.p1.x && p1.x <= s.p2.x&&
+			this->p2.y >= s.p1.y && p1.y <= s.p2.y)
 			return true;
 		return false;
 	}

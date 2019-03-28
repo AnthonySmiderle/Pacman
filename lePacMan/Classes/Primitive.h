@@ -40,6 +40,7 @@ namespace DevitoCult {
 		void addForce(cocos2d::Vec2 v);
 		void setForce(cocos2d::Vec2 v);
 		void update();
+		cocos2d::Vec2 getVelocity() const { return velocity; }
 	private:
 		cocos2d::Color4F colour;
 		cocos2d::DrawNode *Node;

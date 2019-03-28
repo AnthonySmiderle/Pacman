@@ -79,15 +79,8 @@ void HelloWorld::update(float dt)
 	pacman->update();
 	
 	///std::cout << pacman->getAltBox()->getP1().x << " " << pacman->getAltBox()->getP1().y << " " << pacman->getAltBox()->getP2().x << " " << pacman->getAltBox()->getP2().y << "\n";
-	for (unsigned i = 0; i < levelOne.getBounds().size(); i++) {
-		if (levelOne[i]->colliding(*pacman->getAltBox())) {
-			///pacman->getAltBox()->setP1x(pacman->getAltBox()->getP1().x);
-			///pacman->getAltBox()->setP1y(pacman->getAltBox()->getP1().y);
-			///pacman->getAltBox()->setP2x(pacman->getAltBox()->getP2().x);
-			///pacman->getAltBox()->setP2y(pacman->getAltBox()->getP2().y);
-		}
-	}
-
+	levelOne.checkWall(pacman);
+	levelOne.checkEat(pacman);
 
 }
 

@@ -7,11 +7,10 @@ namespace DevitoCult {
 
 	class Pacman :public GameObject {
 	public:
-		Pacman(cocos2d::Scene* s, XinputManager MANAGER, float x = 250, float y = 250, float x2 = 258, float y2 = 258);
+		Pacman(cocos2d::Scene* s, XinputManager MANAGER, float x = 250, float y = 260, float x2 = 256, float y2 = 266);
 		~Pacman();
 		void update();
 		void die() override;
-
 	private:
 		XinputController* pController;
 		Stick pSticks[2];

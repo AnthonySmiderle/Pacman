@@ -61,6 +61,7 @@ namespace DevitoCult {
 		void deadZoneTriggers(float dz);
 		float getLStickDirection();
 
+		//populates a sticks vector, and updates it too
 		void updateSticks(Stick sticks[2]);//using this
 
 		void getTriggers(Triggers &triggers);

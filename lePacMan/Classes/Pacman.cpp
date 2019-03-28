@@ -32,13 +32,13 @@ void DevitoCult::Pacman::update()
 
 	//check which way the stick is, then move in that direction
 	if (pSticks[0].x > 0.3f)
-		this->getAltBox()->setForce(cocos2d::Vec2(2, 0));
+		this->getAltBox()->setForce(cocos2d::Vec2(1, 0));
 	else if (pSticks[0].x < -0.3f)
-		this->getAltBox()->setForce(cocos2d::Vec2(-2, 0));
+		this->getAltBox()->setForce(cocos2d::Vec2(-1, 0));
 	if (pSticks[0].y > 0.3f)
-		this->getAltBox()->setForce(cocos2d::Vec2(0, 2));
+		this->getAltBox()->setForce(cocos2d::Vec2(0, 1));
 	else if (pSticks[0].y < -0.3f)
-		this->getAltBox()->setForce(cocos2d::Vec2(0, -2));
+		this->getAltBox()->setForce(cocos2d::Vec2(0, -1));
 
 
 	this->updateGameObject();
@@ -50,5 +50,5 @@ void DevitoCult::Pacman::die()
 	//ya ded
 	lives--;
 	//play death animation
-	this->getBox()->setLocation(cocos2d::Vec2(250, 250));
+	///this->getBox()->setLocation(cocos2d::Vec2(250, 250));
 }
