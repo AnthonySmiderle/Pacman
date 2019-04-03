@@ -1,6 +1,8 @@
 //the following code takes inspiration from Sedna Games' GDW project
 
 #include "Pacman.h"
+#include "Input.h"
+#include "Events.h"
 
 DevitoCult::Pacman::Pacman(cocos2d::Scene* s, XinputManager MANAGER,float x1, float y1,float x2,float y2)
 {
@@ -31,13 +33,13 @@ void DevitoCult::Pacman::update()
 	pController->updateSticks(pSticks);
 
 	//check which way the stick is, then move in that direction
-	if (pSticks[0].x > 0.3f)
+	if (pSticks[0].x > 0.3f || isEvent(Events::D))
 		this->getAltBox()->setForce(cocos2d::Vec2(1.5f, 0));
-	else if (pSticks[0].x < -0.3f)
+	else if (pSticks[0].x < -0.3f || isEvent(Events::A))
 		this->getAltBox()->setForce(cocos2d::Vec2(-1.5f, 0));
-	if (pSticks[0].y > 0.3f)
+	if (pSticks[0].y > 0.3f || isEvent(Events::W))
 		this->getAltBox()->setForce(cocos2d::Vec2(0, 1.5f));
-	else if (pSticks[0].y < -0.3f)
+	else if (pSticks[0].y < -0.3f || isEvent(Events::S))
 		this->getAltBox()->setForce(cocos2d::Vec2(0, -1.5f));
 
 
