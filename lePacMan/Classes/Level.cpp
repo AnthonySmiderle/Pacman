@@ -2,7 +2,7 @@
 #include "Pacman.h"
 #include <iostream>
 #define BOXSIZE 15
-#define PACDOTSIZE 5
+#define PACDOTSIZE 2
 namespace DevitoCult {
 
 	DevitoCult::Level::Level()
@@ -19,7 +19,7 @@ namespace DevitoCult {
 					s->addChild(pacDots.back()->getDrawNode());
 
 					//put the pacdots in the place they're supposed to be
-					pacDots.back()->setPosition(cocos2d::Vec2(pacDots.back()->getP1().x + (j*BOXSIZE) + (0.35F * BOXSIZE), pacDots.back()->getP1().y - (i*BOXSIZE) + (0.35F * BOXSIZE)),
+					pacDots.back()->setPosition(cocos2d::Vec2(pacDots.back()->getP1().x + (j*BOXSIZE) + (0.40F * BOXSIZE), pacDots.back()->getP1().y - (i*BOXSIZE) + (0.40F * BOXSIZE)),
 						cocos2d::Vec2(pacDots.back()->getP2().x + (j*BOXSIZE) + (0.35F * BOXSIZE), pacDots.back()->getP2().y - (i*BOXSIZE) + (0.35F * BOXSIZE)));
 
 
