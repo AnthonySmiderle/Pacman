@@ -8,12 +8,13 @@ namespace OOP {
 	class Fruit : public GameObject
 	{
 	public:
-		Fruit(const cocos2d::Vec2 & startingPosition, const cocos2d::Vec2 & endPosition, const cocos2d::Color4F& COLOUR, int s, Fruit_Types t);
+		Fruit(cocos2d::Scene* s, float x, float y, float x2, float y2, unsigned score);
+		~Fruit();
 		//void update(float dt);
 		SquarePrimitive* getSquare() const;
 	private:
 		OOP::SquarePrimitive* square;
-		int scoreValue;
+		unsigned scoreValue;
 		int type;
 		float time;
 

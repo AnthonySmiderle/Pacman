@@ -12,16 +12,27 @@ namespace OOP {
 	//	}
 	//}
 
+	Fruit::Fruit(cocos2d::Scene * s, float x, float y, float x2, float y2, unsigned score)
+	{
+		altHitBox = new SquarePrimitive(cocos2d::Vec2(x, y), cocos2d::Vec2(x2, y2), cocos2d::Color4F(0, 0, 0, 1));
+		altHitBox->getDrawNode()->setVisible(false);
+		sprite = cocos2d::Sprite::create("replace this");
+
+		s->addChild(sprite);
+		s->addChild(altHitBox->getDrawNode());
+
+
+	}
+
+	Fruit::~Fruit()
+	{
+		square->getDrawNode()->removeFromParent();
+	}
+
 	SquarePrimitive * Fruit::getSquare() const
 	{
 		return square;
 	}
 
-	Fruit::Fruit(const cocos2d::Vec2 & startingPosition, const cocos2d::Vec2 & endPosition, const cocos2d::Color4F& COLOUR, int s, Fruit_Types t) 
-		: square(new SquarePrimitive(startingPosition, endPosition, COLOUR))
-	{
-		scoreValue = s;
-		type = t;
-		time = 10.0f;
-	}
+	
 }

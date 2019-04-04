@@ -57,7 +57,7 @@ bool HelloWorld::init()
 
 	initSprites();
 
-	
+
 
 	this->scheduleUpdate();
 
@@ -72,7 +72,7 @@ void HelloWorld::initSprites()
 	levelOne.drawMap(this);
 	scoreLabel = cocos2d::Label::create();
 
-	this->addChild(scoreLabel,10);
+	this->addChild(scoreLabel, 10);
 
 	std::string scoreString = "Score: ";
 	std::string score = std::to_string(pacman->score);
@@ -86,12 +86,11 @@ void HelloWorld::initSprites()
 void HelloWorld::update(float dt)
 {
 	pacman->update(dt);
-	
 
-	
+
 	levelOne.checkWall(pacman);
 	levelOne.checkEat(pacman);
-	
+
 	std::string scoreString = "Score: ";
 	std::string score = std::to_string(pacman->score);
 
@@ -99,6 +98,15 @@ void HelloWorld::update(float dt)
 
 	scoreLabel->setString(scoreString);
 
+	if (levelOne.getPacdots().size() == 70) {
+		OOP::Fruit* fruit;
+		fruit = new OOP::Fruit();
+		fruitList.push_back(fruit);
+		delete fruit;
+		//memory leak?
+
+		
+	}
 
 }
 

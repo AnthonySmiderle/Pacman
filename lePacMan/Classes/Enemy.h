@@ -15,8 +15,9 @@ public:
 
 	/*there is already a collision detection algorithm that i made within the game object
 	void hitDetect(OOP::Pacman* P);
-	here is a function that handles collision with power pellet stuff*/
-	void hitDetect(Pacman* p);
+	here is a function that handles collision with power pellet stuff
+	return 0 for pacman death, return 1 for ghost death*/
+	bool hitDetect(Pacman* p);
 
 private:
 	bool state = false;
