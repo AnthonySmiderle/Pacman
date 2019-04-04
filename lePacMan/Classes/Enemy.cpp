@@ -49,8 +49,10 @@ bool Enemy::hitDetect(Pacman * p)
 	else if (this->getAltBox()->colliding(*p->getAltBox()) && p->isPowerPelletMode()) {
 		//this-> dies
 		//handle deleting OUTSIDE of the class, so we dont risk some form of memory issue
+
 		return true;
 	}
+	return false;
 }
 
 //void Enemy::hitDetect(OOP::Pacman P)

@@ -3,13 +3,13 @@ namespace OOP {
 
 	//void Fruit::update(float dt)
 	//{
-	//	time -= dt;
-	//	if (time <= 0)
-	//	{
-	//		//delete this;
-	//	///do somethin that isnt delete this lul
-	//	///might be a good idea to handle this somewhere else
-	//	}
+	//    time -= dt;
+	//    if (time <= 0)
+	//    {
+	//        //delete this;
+	//    ///do somethin that isnt delete this lul
+	//    ///might be a good idea to handle this somewhere else
+	//    }
 	//}
 
 	Fruit::Fruit(cocos2d::Scene * s, float x, float y, float x2, float y2, unsigned score)
@@ -26,13 +26,12 @@ namespace OOP {
 
 	Fruit::~Fruit()
 	{
-		square->getDrawNode()->removeFromParent();
+		altHitBox->getDrawNode()->removeFromParent();
 	}
 
-	SquarePrimitive * Fruit::getSquare() const
+	void Fruit::die()
 	{
-		return square;
 	}
 
-	
+
 }
