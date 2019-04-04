@@ -3,7 +3,7 @@
 #include <vector>
 #include "Fruit.h"
 
-namespace DevitoCult {
+namespace OOP {
 	class Pacman;
 	class Level {
 	public:

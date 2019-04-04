@@ -3,9 +3,9 @@
 #include <iostream>
 #define BOXSIZE 15
 #define PACDOTSIZE 2
-namespace DevitoCult {
+namespace OOP {
 
-	DevitoCult::Level::Level()
+	OOP::Level::Level()
 	{
 	}
 
@@ -16,7 +16,7 @@ namespace DevitoCult {
 			int levelData1[21][27] = {//20,
 				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 				{1,0,3,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,3,0,1},
-				{1,0,1,1,1,1,0,1,1,2,1,1,1,1,1,1,1,2,1,1,0,1,1,1,1,0,1},
+				{1,0,1,1,1,1,0,1,1,2,1,1,4,4,4,1,1,2,1,1,0,1,1,1,1,0,1},
 				{1,0,1,1,1,1,0,1,1,2,1,0,0,0,0,0,1,2,1,1,0,1,1,1,1,0,1},
 				{1,0,0,0,0,0,0,1,1,2,1,1,1,1,1,1,1,2,1,1,0,0,0,0,0,0,1},
 				{1,1,1,1,0,1,0,0,2,2,2,2,2,2,2,2,2,2,2,0,0,1,0,1,1,1,1},
@@ -77,7 +77,7 @@ namespace DevitoCult {
 			exit(std::stoi("out of index"));
 	}
 
-	void DevitoCult::Level::drawMap(cocos2d::Scene * s)
+	void OOP::Level::drawMap(cocos2d::Scene * s)
 	{
 
 		for (int i = 0; i < 21; i++) {
@@ -94,7 +94,7 @@ namespace DevitoCult {
 
 				}
 				else if (levelData[i][j] == 1) {
-					levelBounds.push_back(new SquarePrimitive(cocos2d::Vec2(37, 303), cocos2d::Vec2(37 + BOXSIZE, 303 + BOXSIZE), cocos2d::Color4F(0, 0, 1.0f, 1.0f)));
+					levelBounds.push_back(new SquarePrimitive(cocos2d::Vec2(37, 303), cocos2d::Vec2(37 + BOXSIZE, 303 + BOXSIZE), cocos2d::Color4F(0, 0, 1.0f, 1.0f),true));
 					s->addChild(levelBounds.back()->getDrawNode());
 
 					//put the walls where they're supposed to be
@@ -104,7 +104,7 @@ namespace DevitoCult {
 				}
 
 
-				//path
+				//path...might not use. The ghosts dont need to track
 				else if (levelData[i][j] == 2) {
 					path.push_back(new SquarePrimitive(cocos2d::Vec2(37, 303), cocos2d::Vec2(37 + BOXSIZE, 303 + BOXSIZE), cocos2d::Color4F(0, 0, 1.0f, 1.0f)));
 					s->addChild(path.back()->getDrawNode());
@@ -116,8 +116,8 @@ namespace DevitoCult {
 					path.back()->getDrawNode()->setVisible(false);
 				}
 
-
-				if (levelData[i][j] == 3) {
+				//power pellets
+				else if (levelData[i][j] == 3) {
 					//make a new square and slap it into the list of pacdots
 					pacDots.push_back(new SquarePrimitive(cocos2d::Vec2(37, 303), cocos2d::Vec2(37 + PACDOTSIZE * 3, 303 + PACDOTSIZE * 3), cocos2d::Color4F(1.0f, 1.0f, 0, 1.0f), true));
 					s->addChild(pacDots.back()->getDrawNode());
@@ -128,7 +128,16 @@ namespace DevitoCult {
 
 
 				}
+				//grey walls for ghosts
+				else if (levelData[i][j] == 4) {
+					levelBounds.push_back(new SquarePrimitive(cocos2d::Vec2(37, 303), cocos2d::Vec2(37 + BOXSIZE, 303 + BOXSIZE), cocos2d::Color4F(0.5f, 0.5f, 0.5f, 1.0f),true));
+					s->addChild(levelBounds.back()->getDrawNode());
 
+					//put the walls where they're supposed to be
+					levelBounds.back()->setPosition(cocos2d::Vec2(levelBounds.back()->getP1().x + (j*BOXSIZE), levelBounds.back()->getP1().y - (i*BOXSIZE)),
+						cocos2d::Vec2(levelBounds.back()->getP2().x + (j*BOXSIZE), levelBounds.back()->getP2().y - (i*BOXSIZE)));
+
+				}
 
 			}
 		}
@@ -145,16 +154,22 @@ namespace DevitoCult {
 		for (unsigned i = 0; i < pacDots.size(); i++) {
 			if (pacDots[i]->colliding(*p->getAltBox())) {
 				
-				if (pacDots[i]->isFilled())
-					p->score += 200;//might have to change this
+				if (pacDots[i]->isFilled()) {
+					p->score += 50;//might have to change this
+					p->setPowerPelletMode(true);
+				}
 				else
-					p->score += 100;//might have to change this
+					p->score += 10;//might have to change this
+				p->isEating = true;
+
 
 				pacDots[i]->getDrawNode()->removeFromParent();
 				pacDots.erase(pacDots.begin() + i);
 				i--;
 
 			}
+			else
+				p->isEating = false;
 		}
 
 	}
@@ -180,7 +195,7 @@ namespace DevitoCult {
 
 	}
 
-	std::vector<SquarePrimitive*> DevitoCult::Level::getBounds() const
+	std::vector<SquarePrimitive*> OOP::Level::getBounds() const
 	{
 		return levelBounds;
 	}

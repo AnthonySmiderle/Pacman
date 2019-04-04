@@ -4,7 +4,7 @@
 #pragma once
 #include "cocos2d.h"
 
-namespace DevitoCult {
+namespace OOP {
 	//>=
 	class dVec2 : public cocos2d::Vec2{
 	public:

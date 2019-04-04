@@ -1,7 +1,5 @@
 #include "GameObject.h"
-namespace DevitoCult {
-
-
+namespace OOP {
 
 	GameObject::GameObject(const char * FILEPATH, const cocos2d::Vec2 & LOCATION, float RADIUS, float ANGLE, unsigned int SEGMENTS)
 		:hitBox(new CirclePrimitive(LOCATION, RADIUS, ANGLE, SEGMENTS))
@@ -22,7 +20,7 @@ namespace DevitoCult {
 		return hitBox;
 	}
 
-	DevitoCult::SquarePrimitive * GameObject::getAltBox() const
+	OOP::SquarePrimitive * GameObject::getAltBox() const
 	{
 		return altHitBox;
 	}

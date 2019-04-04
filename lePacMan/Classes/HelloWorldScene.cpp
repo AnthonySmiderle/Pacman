@@ -54,10 +54,7 @@ bool HelloWorld::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 
-	p1Controller = manager.getController(0);
-	manager.update();
 
-	p1Controller->updateSticks(p1Sticks);
 	initSprites();
 
 	
@@ -70,8 +67,8 @@ bool HelloWorld::init()
 
 void HelloWorld::initSprites()
 {
-	pacman = new DevitoCult::Pacman(this, manager);
-	levelOne = DevitoCult::Level(1);
+	pacman = new OOP::Pacman(this);
+	levelOne = OOP::Level(1);
 	levelOne.drawMap(this);
 	scoreLabel = cocos2d::Label::create();
 
@@ -88,9 +85,7 @@ void HelloWorld::initSprites()
 
 void HelloWorld::update(float dt)
 {
-	manager.update();
-	p1Controller->updateSticks(p1Sticks);
-	pacman->update();
+	pacman->update(dt);
 	
 
 	

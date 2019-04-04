@@ -1,19 +1,27 @@
 #pragma once
-#include "cocos2d.h"
-#include "Pacman.h"
-
-class Enemy : cocos2d::Sprite
+#include "GameObject.h"
+namespace OOP {
+	class Pacman;
+class Enemy : public GameObject
 {
-private:
-	bool state = false;
-	bool alive = true;
-	cocos2d::Vec2 spd = (0,0);
 public:
 	Enemy();
+	Enemy(std::string FILEPATH, float x, float y, float x2, float y2);
+	~Enemy();
 	bool getState();
 	void setState(bool s);
 	void respawn();
 	void update(float dt);
-	void hitDetect(DevitoCult::Pacman P);
+
+	/*there is already a collision detection algorithm that i made within the game object
+	void hitDetect(OOP::Pacman* P);
+	here is a function that handles collision with power pellet stuff*/
+	void hitDetect(Pacman* p);
+
+private:
+	bool state = false;
+	bool alive = true;
+	cocos2d::Vec2 spd = (0,0);
 
 };
+}

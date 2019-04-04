@@ -3,7 +3,7 @@
 #include "Primitive.h"
 #include <string>
 
-namespace DevitoCult {
+namespace OOP {
 
 	class GameObject{
 	public:
@@ -11,8 +11,8 @@ namespace DevitoCult {
 		GameObject(const char* FILEPATH, const cocos2d::Vec2 &LOCATION, float RADIUS, float ANGLE, unsigned int SEGMENTS);
 		virtual ~GameObject() { delete sprite; delete hitBox; }
 		cocos2d::Sprite* getSprite()const;
-		DevitoCult::CirclePrimitive* getBox()const;
-		DevitoCult::SquarePrimitive* getAltBox() const;
+		OOP::CirclePrimitive* getBox()const;
+		OOP::SquarePrimitive* getAltBox() const;
 		void setCircle(CirclePrimitive c) { *hitBox = c; }
 		void updateGameObject();
 		int getHP() const;
@@ -23,7 +23,7 @@ namespace DevitoCult {
 	protected:
 		int objectHp;
 		cocos2d::Sprite *sprite;
-		DevitoCult::CirclePrimitive* hitBox;
-		DevitoCult::SquarePrimitive* altHitBox;
+		OOP::CirclePrimitive* hitBox;
+		OOP::SquarePrimitive* altHitBox;
 	};
 }

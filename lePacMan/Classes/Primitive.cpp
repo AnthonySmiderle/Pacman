@@ -4,7 +4,7 @@
 #include "Primitive.h"
 #include "2d/CCDrawNode.h"
 
-namespace DevitoCult {
+namespace OOP {
 
 	bool dVec2::operator>=(const dVec2 & dVec)
 	{
@@ -127,24 +127,24 @@ namespace DevitoCult {
 
 
 	//Circle
-	DevitoCult::CirclePrimitive::CirclePrimitive(const cocos2d::Vec2 &LOCATION, float RADIUS, float ANGLE, unsigned int SEGMENTS)
+	OOP::CirclePrimitive::CirclePrimitive(const cocos2d::Vec2 &LOCATION, float RADIUS, float ANGLE, unsigned int SEGMENTS)
 		: Node(cocos2d::DrawNode::create()), location(LOCATION), radius(RADIUS), angle(ANGLE), segments(SEGMENTS)
 	{
 		//draw a circle given dimensions
 		Node->drawCircle(LOCATION, RADIUS, ANGLE, SEGMENTS, false, lerpdeColour(cocos2d::Color4F(1.0f, 0.0f, 0.0f, 1.0f), cocos2d::Color4F(0.0f, 0.0f, 1.0f, 1.0f), 1.0f));
 	}
 
-	DevitoCult::CirclePrimitive::CirclePrimitive()
+	OOP::CirclePrimitive::CirclePrimitive()
 	{
 	}
 
-	DevitoCult::CirclePrimitive::~CirclePrimitive()
+	OOP::CirclePrimitive::~CirclePrimitive()
 	{
 
 		//		Node->release();
 	}
 
-	cocos2d::DrawNode * DevitoCult::CirclePrimitive::getDrawNode() const
+	cocos2d::DrawNode * OOP::CirclePrimitive::getDrawNode() const
 	{
 		return Node;
 	}

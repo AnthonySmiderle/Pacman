@@ -45,15 +45,11 @@ public:
 
 
 	//manager that stores controllers
-	DevitoCult::XinputManager manager;
-	DevitoCult::XinputController* p1Controller;
 	
 	//controller sticks
-	DevitoCult::Stick p1Sticks[2];
 
-
-	DevitoCult::Level levelOne;
-	DevitoCult::Pacman* pacman;
+	OOP::Level levelOne;
+	OOP::Pacman* pacman;
 	cocos2d::Label* scoreLabel;
 };
 
