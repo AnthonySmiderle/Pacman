@@ -1,7 +1,7 @@
 #pragma once
 #include "Primitive.h"
 #include <vector>
-#include "proj.win32\Fruit.h"
+#include "Fruit.h"
 
 namespace DevitoCult {
 
