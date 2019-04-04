@@ -33,8 +33,8 @@ void OOP::Pacman::update(float dt)
 	if (powermodeTimer >= 5.0f) //might need to change
 		powerPelletMode = false;
 
-	if (isEating)
-		movementSpeed = 1.5f*0.0001f;
+	//if (isEating)
+	//	movementSpeed = 1.5f*0.0001f;
 
 	if (isEvent(Events::D))
 		this->getAltBox()->setForce(cocos2d::Vec2(movementSpeed, 0));
