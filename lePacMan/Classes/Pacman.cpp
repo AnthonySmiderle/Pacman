@@ -3,6 +3,7 @@
 #include "Pacman.h"
 #include "Input.h"
 #include "Events.h"
+#include<iostream>
 
 DevitoCult::Pacman::Pacman(cocos2d::Scene* s, XinputManager MANAGER,float x1, float y1,float x2,float y2)
 {
@@ -44,7 +45,8 @@ void DevitoCult::Pacman::update()
 
 
 	this->updateGameObject();
-	
+	std::cout << this->getAltBox()->getCentre().x << " " << this->getAltBox()->getCentre().y << "\n";
+
 }
 
 void DevitoCult::Pacman::die()

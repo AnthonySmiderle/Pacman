@@ -41,6 +41,19 @@ namespace DevitoCult {
 		velocity = cocos2d::Vec2(0, 0);
 	}
 
+	SquarePrimitive::SquarePrimitive(const cocos2d::Vec2 & startingPosition, const cocos2d::Vec2 & endPosition, const cocos2d::Color4F& COLOUR,bool fill)
+		: Node(cocos2d::DrawNode::create())//initialize draw node
+	{
+		//draw a rectangle given dimensions
+		p1 = startingPosition;
+		p2 = endPosition;
+		filled = fill;
+		Node->drawSolidRect(p1, p2, COLOUR);
+		colour = COLOUR;
+
+		velocity = cocos2d::Vec2(0, 0);
+	}
+
 	SquarePrimitive::SquarePrimitive()
 	{
 	}
@@ -101,6 +114,9 @@ namespace DevitoCult {
 		p1 += velocity;
 		p2 += velocity;
 		Node->clear();
+		if (filled)
+			Node->drawSolidRect(p1, p2, colour);
+		else
 		Node->drawRect(p1, p2, colour);
 	}
 

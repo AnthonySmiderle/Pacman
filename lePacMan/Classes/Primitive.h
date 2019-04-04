@@ -20,6 +20,7 @@ namespace DevitoCult {
 	public:
 		//using reference operator to denote a pointer, otherwise it won't work. Vec2 &name literally means an integer in the computer's memory
 		SquarePrimitive(const cocos2d::Vec2 &startingPosition, const cocos2d::Vec2 &endPosition, const cocos2d::Color4F& colour);
+		SquarePrimitive(const cocos2d::Vec2 &startingPosition, const cocos2d::Vec2 &endPosition, const cocos2d::Color4F& colour,bool fill);
 		SquarePrimitive();
 		~SquarePrimitive();
 
@@ -41,7 +42,9 @@ namespace DevitoCult {
 		void setForce(cocos2d::Vec2 v);
 		void update();
 		cocos2d::Vec2 getVelocity() const { return velocity; }
+		bool isFilled() const { return filled; }
 	private:
+		bool filled = false;
 		cocos2d::Color4F colour;
 		cocos2d::DrawNode *Node;
 		cocos2d::Vec2 velocity;

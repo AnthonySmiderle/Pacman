@@ -60,10 +60,7 @@ bool HelloWorld::init()
 	p1Controller->updateSticks(p1Sticks);
 	initSprites();
 
-	auto LabelScore = Label::createWithSystemFont("", "Arial", 12);
-	this->addChild(LabelScore);
-	sLabel = LabelScore;
-	sLabel->setPosition(100,310);
+	
 
 	this->scheduleUpdate();
 
@@ -74,8 +71,19 @@ bool HelloWorld::init()
 void HelloWorld::initSprites()
 {
 	pacman = new DevitoCult::Pacman(this, manager);
+	levelOne = DevitoCult::Level(1);
 	levelOne.drawMap(this);
+	scoreLabel = cocos2d::Label::create();
 
+	this->addChild(scoreLabel,10);
+
+	std::string scoreString = "Score: ";
+	std::string score = std::to_string(pacman->score);
+
+	scoreString.append(score);
+
+	scoreLabel->setString(scoreString);
+	scoreLabel->setPosition(cocos2d::Vec2(80, 230));
 }
 
 void HelloWorld::update(float dt)
@@ -84,19 +92,17 @@ void HelloWorld::update(float dt)
 	p1Controller->updateSticks(p1Sticks);
 	pacman->update();
 	
-	//updates and sets the label that displays the score
-	std::string sString = "Score: ";
-	sString.append(std::to_string(score));
-	sLabel->setString(sString);
+
 	
-	///std::cout << pacman->getAltBox()->getP1().x << " " << pacman->getAltBox()->getP1().y << " " << pacman->getAltBox()->getP2().x << " " << pacman->getAltBox()->getP2().y << "\n";
 	levelOne.checkWall(pacman);
 	levelOne.checkEat(pacman);
 	
-	if (numPacDots == 70 || numPacDots == 170)
-	{
-		//create fruit under the ghost room
-	}
+	std::string scoreString = "Score: ";
+	std::string score = std::to_string(pacman->score);
+
+	scoreString.append(score);
+
+	scoreLabel->setString(scoreString);
 
 
 }

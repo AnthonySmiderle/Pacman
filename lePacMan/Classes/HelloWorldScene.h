@@ -45,17 +45,16 @@ public:
 
 
 	//manager that stores controllers
-	DevitoCult::Level levelOne;
 	DevitoCult::XinputManager manager;
 	DevitoCult::XinputController* p1Controller;
-	//value to track the number of pac dots eaten
-	int numPacDots;
-	//score and the labe to display it
-	int score;
-	cocos2d::Label * sLabel;
+	
 	//controller sticks
 	DevitoCult::Stick p1Sticks[2];
+
+
+	DevitoCult::Level levelOne;
 	DevitoCult::Pacman* pacman;
+	cocos2d::Label* scoreLabel;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
