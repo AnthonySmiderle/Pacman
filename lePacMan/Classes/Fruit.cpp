@@ -16,7 +16,8 @@ namespace OOP {
 	{
 		altHitBox = new SquarePrimitive(cocos2d::Vec2(x, y), cocos2d::Vec2(x2, y2), cocos2d::Color4F(0, 0, 0, 1));
 		altHitBox->getDrawNode()->setVisible(false);
-		sprite = cocos2d::Sprite::create("replace this");
+		sprite = cocos2d::Sprite::create("cherry.png");
+		sprite->setScale(0.03f);
 
 		s->addChild(sprite);
 		s->addChild(altHitBox->getDrawNode());
@@ -26,12 +27,11 @@ namespace OOP {
 
 	Fruit::~Fruit()
 	{
-		square->getDrawNode()->removeFromParent();
+		altHitBox->getDrawNode()->removeFromParent();
 	}
 
-	SquarePrimitive * Fruit::getSquare() const
+	void Fruit::die()
 	{
-		return square;
 	}
 
 	

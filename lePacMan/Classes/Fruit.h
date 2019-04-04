@@ -11,9 +11,8 @@ namespace OOP {
 		Fruit(cocos2d::Scene* s, float x, float y, float x2, float y2, unsigned score);
 		~Fruit();
 		//void update(float dt);
-		SquarePrimitive* getSquare() const;
+		void die() override;
 	private:
-		OOP::SquarePrimitive* square;
 		unsigned scoreValue;
 		int type;
 		float time;

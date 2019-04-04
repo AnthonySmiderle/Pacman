@@ -6,7 +6,7 @@ class Enemy : public GameObject
 {
 public:
 	Enemy();
-	Enemy(std::string FILEPATH, float x, float y, float x2, float y2);
+	Enemy(cocos2d::Scene* s,std::string FILEPATH, float x, float y, float x2, float y2);
 	~Enemy();
 	bool getState();
 	void setState(bool s);
@@ -18,11 +18,11 @@ public:
 	here is a function that handles collision with power pellet stuff
 	return 0 for pacman death, return 1 for ghost death*/
 	bool hitDetect(Pacman* p);
+	void die() override;
 
 private:
 	bool state = false;
 	bool alive = true;
-	cocos2d::Vec2 spd = (0,0);
 
 };
 }

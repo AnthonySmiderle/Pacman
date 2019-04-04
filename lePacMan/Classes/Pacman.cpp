@@ -8,9 +8,11 @@
 OOP::Pacman::Pacman(cocos2d::Scene* s, float x1, float y1, float x2, float y2)
 {
 	//makes a new sprite and a new hitbox
-	sprite = cocos2d::Sprite::create("HelloWorld.png");
+	sprite = cocos2d::Sprite::create("pac.png");
 	altHitBox = new SquarePrimitive(cocos2d::Vec2(x1, y1), cocos2d::Vec2(x2, y2), cocos2d::Color4F(1.0f, 1.0f, 0, 1.0f));
-	sprite->setVisible(false);
+	altHitBox->getDrawNode()->setVisible(false);
+	sprite->setScale(0.03f);
+	//sprite->setVisible(true);
 
 	s->addChild(altHitBox->getDrawNode(), 100);
 	s->addChild(sprite);
@@ -26,12 +28,16 @@ OOP::Pacman::~Pacman()
 	altHitBox->getDrawNode()->removeFromParent();
 }
 
+
 void OOP::Pacman::update(float dt)
 {
 	if (powerPelletMode)
 		powermodeTimer += dt;
-	if (powermodeTimer >= 5.0f) //might need to change
+	if (powermodeTimer >= 20.0f) //might need to change
+	{
 		powerPelletMode = false;
+		powermodeTimer = 0.0f;
+	}
 
 	//if (isEating)
 	//	movementSpeed = 1.5f*0.0001f;
@@ -54,7 +60,15 @@ void OOP::Pacman::die()
 {
 	//ya ded
 	lives--;
+	if (lives <= 0)
+		exit(0);
 	//play death animation
+// float x = 236 , float y = 158 , float x2 = 244 , float y2 = 166 
+	this->getAltBox()->setP1x(236);
+	this->getAltBox()->setP1y(158);
+	this->getAltBox()->setP2y(166);
+	this->getAltBox()->setP2x(244);
+
 	///this->getBox()->setLocation(cocos2d::Vec2(250, 250));
 }
 

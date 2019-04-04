@@ -28,6 +28,7 @@
 #include "cocos2d.h"
 #include "Pacman.h"
 #include "Level.h"
+#include "Enemy.h"
 #include "Fruit.h"
 class HelloWorld : public cocos2d::Scene
 {
@@ -45,11 +46,13 @@ public:
 	CREATE_FUNC(HelloWorld);
 
 
+	OOP::Fruit* fruit;
 	OOP::Level levelOne;
 	OOP::Pacman* pacman;
 	cocos2d::Label* scoreLabel;
 
 	std::vector<OOP::Fruit*> fruitList;
+	std::vector<OOP::Enemy*> ghosts;
 
 
 };

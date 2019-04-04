@@ -81,15 +81,33 @@ void HelloWorld::initSprites()
 
 	scoreLabel->setString(scoreString);
 	scoreLabel->setPosition(cocos2d::Vec2(80, 230));
+
+
+	ghosts.push_back(new OOP::Enemy(this, "dummy", 250, 260, 258, 268));
+	ghosts.push_back(new OOP::Enemy(this, "dummy", 252, 262, 260, 270));
+	ghosts.push_back(new OOP::Enemy(this, "dummy", 254, 264, 262, 272));
+	ghosts.push_back(new OOP::Enemy(this, "dummy", 256, 266, 264, 274));
+
 }
 
 void HelloWorld::update(float dt)
 {
 	pacman->update(dt);
 
-
-	levelOne.checkWall(pacman);
+	for (unsigned i = 0; i < ghosts.size(); i++) {
+		ghosts[i]->update(dt);
+		if (ghosts[i]->hitDetect(pacman)) {
+			ghosts[i]->getAltBox()->getDrawNode()->removeFromParent();
+			ghosts[i]->getSprite()->removeFromParent();
+			ghosts.erase(ghosts.begin() + i);
+			i--;
+		}
+	}
+	for (unsigned i = 0; i < ghosts.size(); i++) {
+		levelOne.checkWall(ghosts[i]);
+	}
 	levelOne.checkEat(pacman);
+	levelOne.checkWall(pacman);
 
 	std::string scoreString = "Score: ";
 	std::string score = std::to_string(pacman->score);
@@ -98,14 +116,18 @@ void HelloWorld::update(float dt)
 
 	scoreLabel->setString(scoreString);
 
+	if (!fruitList.empty()) {
+		fruitList.back()->updateGameObject();
+		fruitList.back()->getAltBox()->colliding(*pacman->getAltBox()) {
+			//do something
+		}
+	}
+
 	if (levelOne.getPacdots().size() == 70) {
-		OOP::Fruit* fruit;
-		fruit = new OOP::Fruit();
-		fruitList.push_back(fruit);
-		delete fruit;
+		fruitList.push_back(new OOP::Fruit(this, 250, 230, 265, 245, 100));
 		//memory leak?
 
-		
+
 	}
 
 }

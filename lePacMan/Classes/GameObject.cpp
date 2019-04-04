@@ -28,7 +28,7 @@ namespace OOP {
 	void GameObject::updateGameObject()
 	{
 		altHitBox->update();
-		sprite->setPosition(altHitBox->getDrawNode()->getPosition());
+		sprite->setPosition(altHitBox->getCentre());
 
 	}
 	int GameObject::getHP() const

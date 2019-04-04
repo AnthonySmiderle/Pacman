@@ -11,7 +11,7 @@ namespace OOP {
 		Level(unsigned levelNumber);
 		void drawMap(cocos2d::Scene* s);
 		void checkEat(Pacman* p);
-		void checkWall(Pacman* P);
+		void checkWall(GameObject* P);
 		cocos2d::Vec2 checkPath(Pacman* p);
 		std::vector<SquarePrimitive*> getBounds() const;
 		std::vector<SquarePrimitive*> getPacdots() const;

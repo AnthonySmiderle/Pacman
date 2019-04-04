@@ -94,7 +94,19 @@ namespace OOP {
 
 	void  SquarePrimitive::addForce(cocos2d::Vec2 v)
 	{
+		int maxVelocity = 3;
+		int minVelocity = -3;
+
 		velocity += v / 10;
+		
+		if (velocity.x >= maxVelocity)
+			velocity.x = maxVelocity;
+		else if (velocity.x <= minVelocity)
+			velocity.x = minVelocity;
+		if (velocity.y >= maxVelocity)
+			velocity.y = maxVelocity;
+		else if (velocity.y <= minVelocity)
+			velocity.y = minVelocity;
 
 		update();
 	}
