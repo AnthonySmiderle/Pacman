@@ -118,7 +118,7 @@ void HelloWorld::update(float dt)
 
 	if (!fruitList.empty()) {
 		fruitList.back()->updateGameObject();
-		fruitList.back()->getAltBox()->colliding(*pacman->getAltBox()) {
+		if (fruitList.back()->getAltBox()->colliding(*pacman->getAltBox())) {
 			//do something
 		}
 	}
